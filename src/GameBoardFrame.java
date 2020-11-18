@@ -4,16 +4,23 @@
  * and open the template in the editor.
  */
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author ASUS
  */
 public class GameBoardFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GameBoardFrame
-     */
-    public GameBoardFrame() {
+    private char[] board ;
+    private Player player1 , player2 ;
+
+
+    public GameBoardFrame(char[] board , Player player1 , Player player2) {
+        this.board = board ;
+        this.player1 = player1 ;
+        this.player2 = player2 ;
         initComponents();
     }
 
@@ -48,7 +55,7 @@ public class GameBoardFrame extends javax.swing.JFrame {
 
         jDesktopPane2.setBackground(new java.awt.Color(153, 153, 255));
 
-        btn2.setBackground(new java.awt.Color(204, 102, 255));
+        btn2.setBackground(new java.awt.Color(255, 255, 255));
         btn2.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,10 +63,15 @@ public class GameBoardFrame extends javax.swing.JFrame {
             }
         });
 
-        btn3.setBackground(new java.awt.Color(204, 102, 255));
+        btn3.setBackground(new java.awt.Color(255, 255, 255));
         btn3.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
 
-        btn4.setBackground(new java.awt.Color(204, 102, 255));
+        btn4.setBackground(new java.awt.Color(255, 255, 255));
         btn4.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         btn4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,7 +79,7 @@ public class GameBoardFrame extends javax.swing.JFrame {
             }
         });
 
-        btn5.setBackground(new java.awt.Color(204, 102, 255));
+        btn5.setBackground(new java.awt.Color(255, 255, 255));
         btn5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         btn5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +87,7 @@ public class GameBoardFrame extends javax.swing.JFrame {
             }
         });
 
-        btn6.setBackground(new java.awt.Color(204, 102, 255));
+        btn6.setBackground(new java.awt.Color(255, 255, 255));
         btn6.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         btn6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,13 +95,23 @@ public class GameBoardFrame extends javax.swing.JFrame {
             }
         });
 
-        btn7.setBackground(new java.awt.Color(204, 102, 255));
+        btn7.setBackground(new java.awt.Color(255, 255, 255));
         btn7.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        btn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn7ActionPerformed(evt);
+            }
+        });
 
-        btn8.setBackground(new java.awt.Color(204, 102, 255));
+        btn8.setBackground(new java.awt.Color(255, 255, 255));
         btn8.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        btn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn8ActionPerformed(evt);
+            }
+        });
 
-        btn1.setBackground(new java.awt.Color(204, 102, 255));
+        btn1.setBackground(new java.awt.Color(255, 255, 255));
         btn1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,15 +119,20 @@ public class GameBoardFrame extends javax.swing.JFrame {
             }
         });
 
-        btn9.setBackground(new java.awt.Color(204, 102, 255));
+        btn9.setBackground(new java.awt.Color(255, 255, 255));
         btn9.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        btn9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn9ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("PLAYER 2 :");
 
-        player1NameLBL.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        player1NameLBL.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         player1NameLBL.setForeground(new java.awt.Color(102, 0, 102));
         player1NameLBL.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
@@ -232,34 +259,71 @@ public class GameBoardFrame extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jDesktopPane2)
         );
-
+        player1NameLBL.setText(player1.getName());
+        player2NameLBL.setText(player2.getName());
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {
-
+        buttonPressed(btn1);
     }
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        buttonPressed(btn2);
     }
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        buttonPressed(btn4);
     }
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        buttonPressed(btn5);
     }
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        buttonPressed(btn6);
     }
 
     private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        dispose();
+        new GameModeFrame().setVisible(true);
     }
+
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {
+        buttonPressed(btn7);
+    }
+
+    private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {
+        buttonPressed(btn8);
+    }
+
+    private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {
+        buttonPressed(btn9);
+    }
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {
+        buttonPressed(btn3);
+    }
+
+    private void buttonPressed(JButton button){
+        if (player1.isRound()){
+
+            button.setText("X");
+            board[1] = player1.getPlayerCharacter();
+
+        }
+        else {
+
+            button.setText("O");
+            board[1] = player1.getPlayerCharacter();
+        }
+        player1.setRound(!player1.isRound());
+        player2.setRound(!player2.isRound());
+        button.setEnabled(false);
+    }
+
+
 
 
     // Variables declaration - do not modify
@@ -281,4 +345,3 @@ public class GameBoardFrame extends javax.swing.JFrame {
     private javax.swing.JLabel winnerLBL;
     // End of variables declaration
 }
-

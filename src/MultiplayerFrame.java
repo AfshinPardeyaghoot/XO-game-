@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import javax.swing.*;
+
 /**
  *
  * @author ASUS
@@ -144,7 +146,19 @@ public class MultiplayerFrame extends javax.swing.JFrame {
 
     private void playBTNActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
-        new GameBoardFrame().setVisible(true);
+        char[] board = new char[9] ;
+        for (int i=0 ; i<9 ; i++){
+            board[i] = ' ';
+        }
+        if (player1NameTXT.getText().isEmpty() || player2NameTXT.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null," PLEASE ENTER NAMES ! ");
+        }
+        else {
+            Player player1 = new Player(player1NameTXT.getText(),'x',true);
+            Player player2 = new Player(player2NameTXT.getText(),'o',false);
+            new GameBoardFrame(board,player1,player2).setVisible(true);
+        }
+
     }
 
 
