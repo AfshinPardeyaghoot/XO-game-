@@ -1,3 +1,5 @@
+import javax.swing.plaf.metal.MetalBorders;
+
 public class SingleModeFrame extends javax.swing.JFrame {
 
     /**
@@ -113,8 +115,16 @@ public class SingleModeFrame extends javax.swing.JFrame {
     }
 
     private void playBTNActionPerformed(java.awt.event.ActionEvent evt) {
+        char[][] board = new char[3][3] ;
+        Player player = new Player(player1NameTXT.getText(),'x') ;
+        Player cpu = new Player("cpu",'o') ;
+        for (int i=0 ; i<3 ; i++ ){
+            for ( int j=0 ; j<3 ; j++ ){
+                board[i][j] = '_';
+            }
+        }
         dispose();
-        new SingleBoardFrame().setVisible(true);
+        new SingleBoardFrame(board,player,cpu).setVisible(true);
     }
 
 

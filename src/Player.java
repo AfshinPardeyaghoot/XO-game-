@@ -10,6 +10,11 @@ public class Player {
         this.isRound = isRound ;
     }
 
+    public Player(String name , char playerCharacter){
+        this.name = name ;
+        this.playerCharacter = playerCharacter ;
+    }
+
     public String getName() {
         return name;
     }

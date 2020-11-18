@@ -381,8 +381,6 @@ public class GameBoardFrame extends javax.swing.JFrame {
         btn7.setEnabled(false);
         btn8.setEnabled(false);
         btn9.setEnabled(false);
-
-
     }
 
 
