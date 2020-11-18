@@ -95,7 +95,8 @@ public class GameModeFrame extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void cpuBTNActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        dispose();
+        new SingleBoardFrame().setVisible(true);
     }
 
     private void multiplayerBTNActionPerformed(java.awt.event.ActionEvent evt) {
