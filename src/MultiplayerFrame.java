@@ -143,7 +143,8 @@ public class MultiplayerFrame extends javax.swing.JFrame {
     }
 
     private void playBTNActionPerformed(java.awt.event.ActionEvent evt) {
-
+        dispose();
+        new GameBoardFrame().setVisible(true);
     }
 
 
