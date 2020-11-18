@@ -266,23 +266,23 @@ public class GameBoardFrame extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {
-        buttonPressed(btn1);
+        buttonPressed(btn1,0);
     }
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {
-        buttonPressed(btn2);
+        buttonPressed(btn2,1);
     }
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {
-        buttonPressed(btn4);
+        buttonPressed(btn4,3);
     }
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {
-        buttonPressed(btn5);
+        buttonPressed(btn5,4);
     }
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {
-        buttonPressed(btn6);
+        buttonPressed(btn6,5);
     }
 
     private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,36 +291,98 @@ public class GameBoardFrame extends javax.swing.JFrame {
     }
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {
-        buttonPressed(btn7);
+        buttonPressed(btn7,6);
     }
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {
-        buttonPressed(btn8);
+        buttonPressed(btn8,7);
     }
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {
-        buttonPressed(btn9);
+        buttonPressed(btn9,8);
     }
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {
-        buttonPressed(btn3);
+        buttonPressed(btn3,2);
     }
 
-    private void buttonPressed(JButton button){
+    private void buttonPressed(JButton button , int i){
+        Player player ;
         if (player1.isRound()){
 
             button.setText("X");
             board[1] = player1.getPlayerCharacter();
+            board[i] = 'x' ;
+            player = player1 ;
 
         }
         else {
 
             button.setText("O");
             board[1] = player1.getPlayerCharacter();
+            board[i] = 'o' ;
+            player = player2 ;
+
+        }
+        if (isWinner(player)){
+            winnerLBL.setText(player.getName()+" IS WINNER ");
+            finishGame();
+        }
+        if (isEqual()){
+            winnerLBL.setText("THE GAME IS EQUAL");
         }
         player1.setRound(!player1.isRound());
         player2.setRound(!player2.isRound());
         button.setEnabled(false);
+    }
+
+    public boolean isWinner(Player player){
+
+        boolean isWin = false ;
+        char character = player.getPlayerCharacter() ;
+
+        if( board[0] == character && board[1] == character && board[2] == character)
+            isWin = true ;
+        else if(board[3] == character && board[4] == character && board[5] == character)
+            isWin = true ;
+        else if(board[6] == character && board[7] == character && board[8] == character)
+            isWin = true ;
+        else if(board[0] == character && board[3] == character && board[6] == character)
+            isWin = true ;
+        else if(board[1] == character && board[4] == character && board[7] == character)
+            isWin = true ;
+        else if(board[2] == character && board[5] == character && board[8] == character)
+            isWin = true ;
+        else if(board[0] == character && board[4] == character && board[8] == character)
+            isWin = true ;
+        else if(board[2] == character && board[4] == character && board[6] == character)
+            isWin = true ;
+
+        return isWin ;
+    }
+
+    public boolean isEqual(){
+        boolean isEqual = true ;
+        for (int i=0 ; i<9 ; i++){
+            if (board[i] == '-')
+                isEqual = false ;
+        }
+        return isEqual ;
+    }
+
+    public void finishGame(){
+
+        btn1.setEnabled(false);
+        btn2.setEnabled(false);
+        btn3.setEnabled(false);
+        btn4.setEnabled(false);
+        btn5.setEnabled(false);
+        btn6.setEnabled(false);
+        btn7.setEnabled(false);
+        btn8.setEnabled(false);
+        btn9.setEnabled(false);
+
+
     }
 
 

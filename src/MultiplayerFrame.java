@@ -148,7 +148,7 @@ public class MultiplayerFrame extends javax.swing.JFrame {
         dispose();
         char[] board = new char[9] ;
         for (int i=0 ; i<9 ; i++){
-            board[i] = ' ';
+            board[i] = '-';
         }
         if (player1NameTXT.getText().isEmpty() || player2NameTXT.getText().isEmpty()){
             JOptionPane.showMessageDialog(null," PLEASE ENTER NAMES ! ");
@@ -160,6 +160,8 @@ public class MultiplayerFrame extends javax.swing.JFrame {
         }
 
     }
+
+
 
 
     // Variables declaration - do not modify
