@@ -283,6 +283,7 @@ public class SingleBoardFrame extends javax.swing.JFrame {
         counter++ ;
         if(counter == 5 ){
             winnerLBL.setText("THE GAME IS EQUAL ");
+            finishGame();
         }
         else {
 
