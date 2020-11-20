@@ -1,7 +1,6 @@
 public class BestMove {
 
-    public Boolean isMovesLeft(char board[][])
-    {
+    public Boolean isMovesLeft(char[][] board) {
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
                 if (board[i][j] == '_')
@@ -9,16 +8,11 @@ public class BestMove {
         return false;
     }
 
-    public  int evaluate(char b[][])
-    {
+    public int evaluate(char[][] b) {
 
-
-
-        for (int row = 0; row < 3; row++)
-        {
+        for (int row = 0; row < 3; row++) {
             if (b[row][0] == b[row][1] &&
-                    b[row][1] == b[row][2])
-            {
+                    b[row][1] == b[row][2]) {
                 if (b[row][0] == 'o')
                     return +10;
                 else if (b[row][0] == 'x')
@@ -27,11 +21,9 @@ public class BestMove {
         }
 
 
-        for (int col = 0; col < 3; col++)
-        {
+        for (int col = 0; col < 3; col++) {
             if (b[0][col] == b[1][col] &&
-                    b[1][col] == b[2][col])
-            {
+                    b[1][col] == b[2][col]) {
                 if (b[0][col] == 'o')
                     return +10;
 
@@ -41,16 +33,14 @@ public class BestMove {
         }
 
 
-        if (b[0][0] == b[1][1] && b[1][1] == b[2][2])
-        {
+        if (b[0][0] == b[1][1] && b[1][1] == b[2][2]) {
             if (b[0][0] == 'o')
                 return +10;
             else if (b[0][0] == 'x')
                 return -10;
         }
 
-        if (b[0][2] == b[1][1] && b[1][1] == b[2][0])
-        {
+        if (b[0][2] == b[1][1] && b[1][1] == b[2][0]) {
             if (b[0][2] == 'o')
                 return +10;
             else if (b[0][2] == 'x')
@@ -61,8 +51,7 @@ public class BestMove {
         return 0;
     }
 
-    public int minimax(char board[][], int depth, Boolean isMax)
-    {
+    public int minimax(char[][] board, int depth, Boolean isMax) {
         int score = evaluate(board);
 
 
@@ -78,18 +67,14 @@ public class BestMove {
             return 0;
 
 
-        if (isMax)
-        {
+        if (isMax) {
             int best = -1000;
 
 
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
 
-                    if (board[i][j]=='_')
-                    {
+                    if (board[i][j] == '_') {
 
                         board[i][j] = 'o';
 
@@ -97,27 +82,19 @@ public class BestMove {
                         best = Math.max(best, minimax(board,
                                 depth + 1, !isMax));
 
-                        // Undo the move
                         board[i][j] = '_';
                     }
                 }
             }
             return best;
-        }
-
-
-        else
-        {
+        } else {
             int best = 1000;
 
 
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
 
-                    if (board[i][j] == '_')
-                    {
+                    if (board[i][j] == '_') {
 
                         board[i][j] = 'x';
 
@@ -125,7 +102,6 @@ public class BestMove {
                         best = Math.min(best, minimax(board,
                                 depth + 1, !isMax));
 
-                        // Undo the move
                         board[i][j] = '_';
                     }
                 }
@@ -135,21 +111,17 @@ public class BestMove {
     }
 
 
-    public Move findBestMove(char board[][])
-    {
+    public Move findBestMove(char[][] board) {
         int bestVal = -1000;
         Move bestMove = new Move();
         bestMove.setRow(-1);
         bestMove.setCol(-1);
 
 
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
 
-                if (board[i][j] == '_')
-                {
+                if (board[i][j] == '_') {
 
                     board[i][j] = 'o';
 
@@ -160,8 +132,7 @@ public class BestMove {
                     board[i][j] = '_';
 
 
-                    if (moveVal > bestVal)
-                    {
+                    if (moveVal > bestVal) {
                         bestMove.setRow(i);
                         bestMove.setCol(j);
                         bestVal = moveVal;

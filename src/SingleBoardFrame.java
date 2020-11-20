@@ -1,8 +1,10 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class SingleBoardFrame extends javax.swing.JFrame {
 
     private Player player , cpu ;
+    private boolean x = true ;
     private int counter = 0 ;
     char[][] board ;
     public SingleBoardFrame(char[][] board , Player player , Player cpu) {
@@ -272,32 +274,42 @@ public class SingleBoardFrame extends javax.swing.JFrame {
 
     public void buttonPressed(JButton button , int i , int j  ){
 
+        button.setForeground(Color.red);
         button.setText("X");
         board[i][j] = 'x' ;
-        BestMove bestMove = new BestMove();
-        int win = bestMove.evaluate(board);
-        if ( win == -10 ){
-            finishGame();
-            winnerLBL.setText(player.getName()+"IS WINNER ");
-        }
+        button.setEnabled(false);
         counter++ ;
-        if(counter == 5 ){
-            winnerLBL.setText("THE GAME IS EQUAL ");
+        whoWin();
+        if (x){
+            cpuButtion();
+            whoWin();
+        }
+    }
+
+    public void whoWin(){
+        BestMove bestMove = new BestMove();
+        int win = bestMove.evaluate(board) ;
+        if (win == 10){
             finishGame();
+            winnerLBL.setText(" CPU WIN !! ");
+        }else if(win == -10){
+            finishGame();
+            winnerLBL.setText(player.getName() +" WIN ");
+        }else if(counter == 9){
+            x = false ;
+            finishGame();
+            winnerLBL.setText("THE GAME IS EQUAL");
         }
-        else {
+    }
 
-            Move move = bestMove.findBestMove(board) ;
-            board[move.getRow()][move.getCol()] = 'o' ;
-            win = bestMove.evaluate(board) ;
-            if (win == 10) {
-                finishGame();
-                winnerLBL.setText(" CPU WIN !");
-            }
-            button.setEnabled(false);
-            findCpuButton(move.getRow(),move.getCol());
 
-        }
+    public void cpuButtion(){
+
+        BestMove bestMove = new BestMove();
+        Move move = bestMove.findBestMove(board) ;
+        board[move.getRow()][move.getCol()] = 'o' ;
+        findCpuButton(move.getRow(),move.getCol());
+        counter++ ;
 
     }
 
@@ -376,5 +388,5 @@ public class SingleBoardFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel player1NameLBL;
     private javax.swing.JLabel winnerLBL;
-    // End of variables declaration                   
+
 }
