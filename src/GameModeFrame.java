@@ -96,7 +96,7 @@ public class GameModeFrame extends javax.swing.JFrame {
 
     private void cpuBTNActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
-        new SingleModeFrame().setVisible(true);
+        new SingleFrame().setVisible(true);
     }
 
     private void multiplayerBTNActionPerformed(java.awt.event.ActionEvent evt) {
